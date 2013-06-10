@@ -16,13 +16,18 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */ 
+
 $alf_admin = "****";
 $password = "****";
+
 //URL Alfresco API
 $api_url ="http://api/alfresco/service/api/";
 
 //URL from Alfresco Share for forwarding after JIT is executed.
 $redirect_url="https://host.nl/share";
+
+//Set Administrator Email
+$alf_admin_user ="admin@fexample.com";
 
 //Set User Quata in Alfresco in bytes. -1 is unlimited.
 $quota = "262144000"; // 262144000 = 250 mb
@@ -53,6 +58,12 @@ rest_call($alf_admin, $password, $api_url.'people', 'POST', $alf_user);
 
 //Update existing Alfresco User
 rest_call($alf_admin, $password, $api_url.'people/'.$persistent_id, 'PUT', $alf_user);
+
+//Add Admin user to Admin group for Admin Role.
+if ($email == $alf_admin_user)
+{
+	$all = rest_call($alf_admin, $password, $api_url.'groups/ALFRESCO_ADMINISTRATORS/children/'.$persistent_id, 'POST', '');
+}
 
 //-----ADD SURFconext groups to alfresco------
 get_SURFteams($shib_user);
