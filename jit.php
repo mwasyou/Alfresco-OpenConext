@@ -15,6 +15,14 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ 	TO DO:
+ 	# Check if user exist then create account or upgrade
+	# Check if Admin user is member of admin group. If not ad admin to group. Extra mutiple admins
+	# Create Sepperate Config file for Jit Script.
+	
+	Ideas:
+	# Create sites automaticly. 
  */ 
 
 $alf_admin = "****";
@@ -27,14 +35,20 @@ $api_url ="http://api/alfresco/service/api/";
 $redirect_url="https://host.nl/share";
 
 //Set Administrator Email
-$alf_admin_user ="admin@fexample.com";
+$alf_admin_user ="admin@example.com";
 
 //Set User Quata in Alfresco in bytes. -1 is unlimited.
-$quota = "262144000"; // 262144000 = 250 mb
+//Set quota for normal user.
+$quota_user = "262144000"; // 262144000 = 250 Mb
+
+//Set quota for a specific email domain
+$set_domain = "example.com"; //domain
+$quota_domain_user = "1048567000"; // 1048567000 = 1000 Mb
 
 //----------------------------------------------------------------------------------
 
 require_once "/var/www/html/php-oauth-client/lib/_autoload.php";
+
 
 $new_teams;
 
@@ -44,6 +58,16 @@ $firstname = $_SERVER['Shib-givenName'];
 $lastname = $_SERVER['Shib-surName'];
 $email = $_SERVER['Shib-email'];
 $shib_user = $_SERVER['Shib-uid'];
+
+//Get email domain from user
+$split_mail = explode("@", $email);
+	if ($set_domain == $split_mail[1]) { 
+		$quota = $quota_domain_user;
+	}
+	else { 
+		$quota = $quota_user;
+	}
+	
 $alf_user = array(
 	'userName' => $persistent_id,
 	'firstName' => $firstname,
@@ -59,14 +83,20 @@ rest_call($alf_admin, $password, $api_url.'people', 'POST', $alf_user);
 //Update existing Alfresco User
 rest_call($alf_admin, $password, $api_url.'people/'.$persistent_id, 'PUT', $alf_user);
 
-//Add Admin user to Admin group for Admin Role.
+//Add Admin Role
 if ($email == $alf_admin_user)
 {
 	$all = rest_call($alf_admin, $password, $api_url.'groups/ALFRESCO_ADMINISTRATORS/children/'.$persistent_id, 'POST', '');
 }
 
+
 //-----ADD SURFconext groups to alfresco------
 get_SURFteams($shib_user);
+
+//All groups
+//$alls = rest_call($alf_admin, $password, $api_url.'rootgroups', 'GET', $alf_user);
+//print_r($alls);
+
 
 //-----Remove membership of groups that user is not a member of-----
 $abandoned_groups = rest_call($alf_admin, $password, $api_url.'people/'.$persistent_id.'?groups=true', 'GET', '');
@@ -119,24 +149,28 @@ try {
             error_log($message);
             die($message);
         }
+
         $content = $response->getContent();
         if (empty($content)) {
             $message = "[voot-roles] ERROR: empty response from VOOT provider";
             error_log($message);
             die($message);
         }
+
         $data = json_decode($content, TRUE);
         if (NULL === $data || !is_array($data)) {
             $message = "[voot-roles] ERROR: invalid/no JSON response from VOOT provider: " . $content;
             error_log($message);
             die($message);
         }
+
         if (!array_key_exists("entry", $data)) {
             $message = "[voot-roles] ERROR: invalid JSON response from VOOT provider, missing 'entry': " . $content;
             error_log($message);
             die($message);
         }
        $groups = $data['entry'];
+    
 } 
 	catch (\OAuth\Client\ApiException $e) {
     echo $e->getMessage();
@@ -163,6 +197,7 @@ $groups = array();
 				rest_call($alf_admin, $password, $api_url.'groups/'.$groupName.'/children/'.$persistent_id, 'POST', '');	
 							}
 						}
+						
 					global $new_teams;
 					$new_teams=$groups;	
 				}
