@@ -21,8 +21,8 @@ This document describes in detail the steps to unlocking a federated Alfresco Sh
 
 
 ===================
-Install alfresco as described here: 
-http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html
+Install alfresco as described [here](http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html)
+
 
 Install Alfresco as dis
 
