@@ -42,13 +42,11 @@ Edit the file /opt/alfresco/tomcat/conf/server.xml
 
 * Edit the file /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 * Add the following code to the `alfresco-global.properties` file.
-```xml
-	authentication.chain=external1:external,alfrescoNtlm1:alfrescoNtlm
-	external.authentication.enabled=true
-	# This header can be changed but should match the configuration in 
-	# share-config-custom.xml
-	external.authentication.proxyUserName=
-```
+    ```
+    authentication.chain=external1:external,alfrescoNtlm1:alfrescoNtlm
+    external.authentication.enabled=true
+    external.authentication.proxyUserName=
+    ```
 * Go to the folder: /opt/alfresco/tomcat/shared/classes/alfresco/web-extension.
 * Add the file [share-config-custom.xml](https://github.com/Frankniesten/Alfresco-OpenConext/blob/master/share-config-custom.xml) to the folder.
 
