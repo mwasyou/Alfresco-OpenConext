@@ -89,7 +89,6 @@ if ($email == $alf_admin_user)
 	$all = rest_call($alf_admin, $password, $api_url.'groups/ALFRESCO_ADMINISTRATORS/children/'.$persistent_id, 'POST', '');
 }
 
-
 //-----ADD SURFconext groups to alfresco------
 get_SURFteams($shib_user);
 
