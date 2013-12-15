@@ -7,7 +7,6 @@ Product:		Alfresco
 Tested Version: 4.2C 
 Platforms:		Apple, Linux, Windows (this manual is written for Linux)
 
-
 Alfresco Community Edition, Commercial support and hosted version available 
 License: GNU Lesser GPL 
 Website: http://wiki.alfresco.com/
@@ -51,8 +50,7 @@ Edit the file /opt/alfresco/tomcat/conf/server.xml
 	external.authentication.proxyUserName=
 
 * Go to the folder: /opt/alfresco/tomcat/shared/classes/alfresco/web-extension.
-* Add the file `nano share-config-custom.xml`
-* Add the following code in `share-config-custom.xml`.
+* Add the [file](https://github.com/Frankniesten/Alfresco-OpenConext/blob/master/share-config-custom.xml) to the folder.
 
 Install JIT Script
 -------------------------
