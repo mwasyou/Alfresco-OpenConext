@@ -27,9 +27,6 @@ Configureren Shibboleth
 Testen shibboleth
 
 
-
-
-
 Install Alfresco
 -------------------------
 * [Download](http://www.alfresco.com/products/community) Alfresco Community Edition.
@@ -39,15 +36,23 @@ Configure Alfresco to use Shibboleth
 -------------------------
 Edit the file /opt/alfresco/tomcat/conf/server.xml
 
-Add `tomcatAuthentication="false”` to the following line:
+* Add `tomcatAuthentication="false”` to the following line:
 
 	<!-- Define an AJP 1.3 Connector on port 8009 -->
 	<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" tomcatAuthentication="false"/>
 
+* Edit the file /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+* Add the following code to the `alfresco-global.properties` file.
 
+	authentication.chain=external1:external,alfrescoNtlm1:alfrescoNtlm
+	external.authentication.enabled=true
+	# This header can be changed but should match the configuration in 
+	# share-config-custom.xml
+	external.authentication.proxyUserName=
 
-
-
+* Go to the folder: /opt/alfresco/tomcat/shared/classes/alfresco/web-extension.
+* Add the file `nano share-config-custom.xml`
+* Add the following code in `share-config-custom.xml`.
 
 Install JIT Script
 -------------------------
