@@ -32,12 +32,21 @@ Testen shibboleth
 
 Install Alfresco
 -------------------------
-* Download Alfresco Community Edition.
-* Install alfresco as described [here](http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html)
+* [Download](http://www.alfresco.com/products/community) Alfresco Community Edition.
+* Install alfresco as described [here](http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html).
 
-Configure alfresco to use Shiobboleth authentication
+Configure Alfresco to use Shibboleth
 -------------------------
-Text
+Edit the file /opt/alfresco/tomcat/conf/server.xml
+
+Add tomcatAuthentication="false” to the following line:
+
+ <!-- Define an AJP 1.3 Connector on port 8009 -->
+    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" tomcatAuthentication="false"/>
+
+
+
+
 
 
 Install JIT Script
