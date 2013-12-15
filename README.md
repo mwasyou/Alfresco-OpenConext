@@ -39,10 +39,10 @@ Configure Alfresco to use Shibboleth
 -------------------------
 Edit the file /opt/alfresco/tomcat/conf/server.xml
 
-Add tomcatAuthentication="false” to the following line:
+Add `tomcatAuthentication="false”` to the following line:
 
- <!-- Define an AJP 1.3 Connector on port 8009 -->
-    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" tomcatAuthentication="false"/>
+	<!-- Define an AJP 1.3 Connector on port 8009 -->
+	<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" tomcatAuthentication="false"/>
 
 
 
