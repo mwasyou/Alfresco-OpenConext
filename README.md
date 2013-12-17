@@ -22,7 +22,7 @@ Preparation
 Install Alfresco
 -------------------------
 * [Download](http://www.alfresco.com/products/community) Alfresco Community Edition.
-* Install alfresco as described [here](http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html].
+* Install alfresco as described [here](http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html).
 
 Configure Alfresco to use Shibboleth
 -------------------------
@@ -47,15 +47,16 @@ external.authentication.proxyUserName=
 Install JIT Script
 -------------------------
 * Create a new folder in your www directory of the webserver.
+   
     cd /var/www
     mkdir jit
 
 * Copy the files config.php and jit.php to the jit directory.
 * Add a new virtual host to apache.
-```
-nano /etc/apache2/sites-available/jit
-```
-add the following text to the new file.
+
+    nano /etc/apache2/sites-available/jit
+
+* add the following lines to the new file.
 ```
 #JIT virtual host
 
@@ -81,13 +82,13 @@ ProxyPassReverse /share ajp://127.0.0.1:8009/share
     a2ensite jit
 
 * Open the Hosts file: 
-```
-cd /etc/hosts
-```
+
+    cd /etc/hosts
+
 * Add the following line to the hosts file.
-```
-127.0.0.1       localhost
-```
+
+    127.0.0.1       localhost
+
 
 Configure JIT Script
 -------------------------
