@@ -22,7 +22,7 @@ Preparation
 Install Alfresco
 -------------------------
 * [Download](http://www.alfresco.com/products/community) Alfresco Community Edition.
-* Install alfresco as described [here](http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html).
+* Install alfresco as described [here](http://docs.alfresco.com/community/index.jsp?topic=%2Fcom.alfresco.community.doc%2Ftasks%2Fsimpleinstall-community-lin.html].
 
 Configure Alfresco to use Shibboleth
 -------------------------
@@ -35,10 +35,11 @@ Edit the file /opt/alfresco/tomcat/conf/server.xml
 
 * Edit the file /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 * Add the following code to the `alfresco-global.properties` file.
-
-    `authentication.chain=external1:external,alfrescoNtlm1:alfrescoNtlm`
-    `external.authentication.enabled=true`
-    `external.authentication.proxyUserName=`
+```
+authentication.chain=external1:external,alfrescoNtlm1:alfrescoNtlm
+external.authentication.enabled=true
+external.authentication.proxyUserName=
+```
 
 * Go to the folder: /opt/alfresco/tomcat/shared/classes/alfresco/web-extension.
 * Add the file [share-config-custom.xml](https://github.com/Frankniesten/Alfresco-OpenConext/blob/master/share-config-custom.xml) to the folder.
