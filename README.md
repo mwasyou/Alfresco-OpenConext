@@ -15,16 +15,9 @@ This document describes in detail the steps to unlocking a federated Alfresco Sh
 
 Preparation
 -------------------------
-Istalleren Apache + SSL
 
-
-
-Installeren Shibboelth
-
-Configureren Shibboleth
-
-Testen shibboleth
-
+* Install Apache with a valid SSL certificate.
+* Install Shibboleth as described (here)[https://wiki.surfnet.nl/display/surfconextdev/My+First+SP+-+Shibboleth].
 
 Install Alfresco
 -------------------------
@@ -43,16 +36,24 @@ Edit the file /opt/alfresco/tomcat/conf/server.xml
 * Edit the file /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 * Add the following code to the `alfresco-global.properties` file.
 
-    authentication.chain=external1:external,alfrescoNtlm1:alfrescoNtlm
-    external.authentication.enabled=true
-    external.authentication.proxyUserName=
+    `authentication.chain=external1:external,alfrescoNtlm1:alfrescoNtlm`
+    `external.authentication.enabled=true`
+    `external.authentication.proxyUserName=`
 
 * Go to the folder: /opt/alfresco/tomcat/shared/classes/alfresco/web-extension.
 * Add the file [share-config-custom.xml](https://github.com/Frankniesten/Alfresco-OpenConext/blob/master/share-config-custom.xml) to the folder.
 
 Install JIT Script
 -------------------------
-Text
+* Create a new folder in your www directory of the webserver.
+    cd /var/www
+    mkdir jit
+
+* Copy the files config.php and jit.php to the hit directory.
+* Add a new 
+
+* Open the Hosts file: /etc/hosts
+* Add … to the hosts file.
 
 
 Configure JIT Script
