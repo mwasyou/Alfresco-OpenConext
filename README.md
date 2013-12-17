@@ -103,7 +103,6 @@ cd /etc/hosts
 
 Configure JIT Script
 -------------------------
-Text
-
+Edit config.php with the correct information.
 
 
