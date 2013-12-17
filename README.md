@@ -17,7 +17,7 @@ Preparation
 -------------------------
 
 * Install Apache with a valid SSL certificate.
-* Install Shibboleth as described (here)[https://wiki.surfnet.nl/display/surfconextdev/My+First+SP+-+Shibboleth].
+* Install Shibboleth as described [here](https://wiki.surfnet.nl/display/surfconextdev/My+First+SP+-+Shibboleth).
 
 Install Alfresco
 -------------------------
@@ -50,12 +50,44 @@ Install JIT Script
     cd /var/www
     mkdir jit
 
-* Copy the files config.php and jit.php to the hit directory.
-* Add a new 
+* Copy the files config.php and jit.php to the jit directory.
+* Add a new virtual host to apache.
+```
+nano /etc/apache2/sites-available/jit
+```
+add the following text to the new file.
+```
+#JIT virtual host
 
-* Open the Hosts file: /etc/hosts
-* Add … to the hosts file.
+<VirtualHost 127.0.0.1:80>
 
+DocumentRoot /var/www/api
+ServerName api
+
+ProxyRequests off
+RewriteEngine on
+
+# Alfresco explorer
+ProxyPass /alfresco ajp://127.0.0.1:8009/alfresco
+ProxyPassReverse /alfresco ajp://127.0.0.1:8009/alfresco
+
+# Alfresco share
+ProxyPass /share ajp://127.0.0.1:8009/share
+ProxyPassReverse /share ajp://127.0.0.1:8009/share
+
+</VirtualHost>
+```
+* Add the new virtual host to apache:
+    a2ensite jit
+
+* Open the Hosts file: 
+```
+cd /etc/hosts
+```
+* Add the following line to the hosts file.
+```
+127.0.0.1       localhost
+```
 
 Configure JIT Script
 -------------------------
