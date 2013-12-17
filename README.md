@@ -47,14 +47,14 @@ external.authentication.proxyUserName=
 Install JIT Script
 -------------------------
 * Create a new folder in your www directory of the webserver.
-   
-    cd /var/www
-    mkdir jit
+
+`cd /var/www`
+`mkdir jit`
 
 * Copy the files config.php and jit.php to the jit directory.
 * Add a new virtual host to apache.
 
-    nano /etc/apache2/sites-available/jit
+`nano /etc/apache2/sites-available/jit`
 
 * add the following lines to the new file.
 ```
