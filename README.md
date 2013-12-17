@@ -84,15 +84,21 @@ ProxyPassReverse /share ajp://127.0.0.1:8009/share
 </VirtualHost>
 ```
 * Add the new virtual host to apache:
-```a2ensite jit```
+```
+a2ensite jit
+```
 
 * Open the Hosts file: 
 
-```cd /etc/hosts```
+```
+cd /etc/hosts
+```
 
 * Add the following line to the hosts file.
 
-```127.0.0.1       localhost```
+```
+127.0.0.1       localhost
+```
 
 
 Configure JIT Script
