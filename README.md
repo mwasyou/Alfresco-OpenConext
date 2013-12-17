@@ -48,19 +48,20 @@ Install JIT Script
 -------------------------
 * Create a new folder in your www directory of the webserver.
 
-`cd /var/www`
-`mkdir jit`
+	cd /var/www
+	mkdir jit
 
 * Copy the files config.php and jit.php to the jit directory.
 * Add a new virtual host to apache.
 
-`nano /etc/apache2/sites-available/jit`
+	nano /etc/apache2/sites-available/jit
 
 * add the following lines to the new file.
-```
-#JIT virtual host
 
-<VirtualHost 127.0.0.1:80>
+```
+	#JIT virtual host
+
+	<VirtualHost 127.0.0.1:80>
 
 DocumentRoot /var/www/api
 ServerName api
@@ -79,15 +80,15 @@ ProxyPassReverse /share ajp://127.0.0.1:8009/share
 </VirtualHost>
 ```
 * Add the new virtual host to apache:
-    a2ensite jit
+	a2ensite jit
 
 * Open the Hosts file: 
 
-    cd /etc/hosts
+	cd /etc/hosts
 
 * Add the following line to the hosts file.
 
-    127.0.0.1       localhost
+    	127.0.0.1       localhost
 
 
 Configure JIT Script
